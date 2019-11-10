@@ -1,0 +1,3 @@
+[submodule "lib/ulfius"]
+	path = lib/ulfius
+	url = https://github.com/babelouest/ulfius.git
