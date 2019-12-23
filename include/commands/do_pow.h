@@ -2,7 +2,7 @@
 #define ULFIUS_DO_POW_H
 
 #include <ulfius.h>
-#include "../../include/error_util.h"
+#include "error_util.h"
 
 typedef struct {
     bool successful;
