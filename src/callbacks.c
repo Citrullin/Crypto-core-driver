@@ -11,16 +11,16 @@
 
 #include <ulfius.h>
 
-#include "include/config.h"
-#include "include/callbacks.h"
+#include "config.h"
+#include "callbacks.h"
 
-#include "commands/include/attach_to_tangle.h"
-#include "commands/include/do_pow.h"
-#include "commands/include/generate_address.h"
-#include "commands/include/generate_random_seed.h"
-#include "commands/include/set_flags.h"
-#include "commands/include/sign_transaction.h"
-#include "commands/include/test_hardware_acceleration.h"
+#include "commands/attach_to_tangle.h"
+#include "commands/do_pow.h"
+#include "commands/generate_address.h"
+#include "commands/generate_random_seed.h"
+#include "commands/set_flags.h"
+#include "commands/sign_transaction.h"
+#include "commands/test_hardware_acceleration.h"
 
 
 #define IOTA_API_VERSION_HEADER_KEY "X-IOTA-API-Version"

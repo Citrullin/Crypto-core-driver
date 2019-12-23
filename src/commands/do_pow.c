@@ -1,12 +1,13 @@
 #include <stdbool.h>
 
 #include <ulfius.h>
-#include "../include/error_util.h"
-#include "include/do_pow.h"
-#include "../include/json_response_utils.h"
+#include "error_util.h"
+#include "commands/do_pow.h"
+#include "json_response_utils.h"
 
 do_pow_validation_result_t do_pow_tangle_validate_json(json_t *json_ptr) {
     json_t *min_weight_magnitude_json_ptr = json_object_get(json_ptr, "minWeightMagnitude");
+
     if (json_is_null(min_weight_magnitude_json_ptr) || min_weight_magnitude_json_ptr == NULL) {
         do_pow_validation_result_t result = {.successful = false, .validation_error = ERROR_MIN_WEIGHT_MAGNITUDE_MISSING};
         return result;

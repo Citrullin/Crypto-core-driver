@@ -11,9 +11,9 @@
 
 #include <ulfius.h>
 
-#include "../include/error_util.h"
+#include "error_util.h"
 
-#include "../include/json_response_utils.h"
+#include "json_response_utils.h"
 
 struct set_flags_validation_result {
     bool successful;

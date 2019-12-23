@@ -8,8 +8,8 @@
 
 #include <ulfius.h>
 
-#include "include/config.h"
-#include "include/callbacks.h"
+#include "config.h"
+#include "callbacks.h"
 
 char * read_file(const char * filename) {
     char * buffer = NULL;

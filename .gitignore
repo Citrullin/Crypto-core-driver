@@ -1,1 +1,2 @@
 build/*.o
+build/crypto_core_driver
