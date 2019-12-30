@@ -6,10 +6,12 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#include <termios.h>
 
 #endif
 
 #include <ulfius.h>
+#include <uart.h>
 
 #include "error_util.h"
 
@@ -25,6 +27,10 @@ struct attach_to_tangle_validation_result {
     uint32_t timestamp;
     json_t *tryte_array_ptr;
 };
+
+void init_uart(){
+
+}
 
 struct attach_to_tangle_validation_result attach_to_tangle_validate_json(json_t *json_ptr) {
     struct attach_to_tangle_validation_result result = {.successful = false};
@@ -110,7 +116,9 @@ void attach_to_tangle_handle_request(json_t *json_ptr, struct _u_response *respo
 
     if (validation_result.successful) {
         //Todo: Implement UART and response
-        ulfius_set_string_body_response(response, 200, "attachToTangle");
+        uart_write(json_ptr);
+        char * result = uart_read();
+        ulfius_set_string_body_response(response, 200, result);
     } else {
         send_error_message(response, validation_result.validation_error);
     }

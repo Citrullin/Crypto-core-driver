@@ -31,6 +31,7 @@ typedef enum {
     ERROR_SECURITY_LEVEL_MISSING,
     ERROR_SECURITY_LEVEL_NOT_NUMBER,
     ERROR_ADDRESS_INDEX_MISSING,
+    ERROR_ADDRESS_INDEX_NOT_NUMBER,
     ERROR_BUNDLE_HASH_MISSING,
     ERROR_BUNDLE_HASH_NOT_STRING,
     ERROR_AUTH_MISSING,
@@ -71,10 +72,10 @@ void send_error_message(struct _u_response *response, crypto_core_json_validatio
 #define SECURITY_LEVEL_MISSING_MESSAGE "Security level is missing"
 #define SECURITY_LEVEL_NOT_NUMBER_MESSAGE "Security level is not a number"
 #define ADDRESS_INDEX_MISSING_MESSAGE "Address index is missing"
-#define ADDRESS_INDEX_NOT_NUMBER "Address is not a number"
+#define ADDRESS_INDEX_NOT_NUMBER_MESSAGE "Address is not a number"
 #define BUNDLE_HASH_MISSING_MESSAGE "Bundle hash is missing"
 #define BUNDLE_HASH_NOT_STRING_MESSAGE "Bundle hash is not a string"
 #define AUTH_MISSING_MESSAGE "Auth missing"
-#define AUTH_NOT_STRING "Auth is not a string"
+#define AUTH_NOT_STRING_MESSAGE "Auth is not a string"
 
 #endif //CRYPTO_CORE_ERROR_UTIL_H

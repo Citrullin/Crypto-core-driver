@@ -85,6 +85,24 @@ void send_error_message(struct _u_response *response, crypto_core_json_validatio
         case ERROR_BUNDLE_HASH_NOT_STRING:
             strcpy(error_message_buffer, BUNDLE_HASH_NOT_STRING_MESSAGE);
             break;
+        case ERROR_SECURITY_LEVEL_MISSING:
+            strcpy(error_message_buffer, SECURITY_LEVEL_MISSING_MESSAGE);
+            break;
+        case ERROR_SECURITY_LEVEL_NOT_NUMBER:
+            strcpy(error_message_buffer, SECURITY_LEVEL_NOT_NUMBER_MESSAGE);
+            break;
+        case ERROR_ADDRESS_INDEX_MISSING:
+            strcpy(error_message_buffer, ADDRESS_INDEX_MISSING_MESSAGE);
+            break;
+        case ERROR_AUTH_MISSING:
+            strcpy(error_message_buffer, AUTH_NOT_STRING_MESSAGE);
+            break;
+        case ERROR_ADDRESS_INDEX_NOT_NUMBER:
+            strcpy(error_message_buffer, ADDRESS_INDEX_NOT_NUMBER_MESSAGE);
+            break;
+        case ERROR_AUTH_NOT_STRING:
+            strcpy(error_message_buffer, AUTH_NOT_STRING_MESSAGE);
+            break;
     }
 
     ulfius_set_json_body_response(response, 400, response_obj_json);

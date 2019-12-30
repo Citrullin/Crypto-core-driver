@@ -1,3 +1,18 @@
 [submodule "lib/ulfius"]
 	path = lib/ulfius
 	url = https://github.com/babelouest/ulfius.git
+[submodule "lib/microhttpd"]
+	path = lib/microhttpd
+	url = https://git.gnunet.org/libmicrohttpd.git
+[submodule "lib/orcania"]
+	path = lib/orcania
+	url = https://github.com/babelouest/orcania.git
+[submodule "lib/yder"]
+	path = lib/yder
+	url = https://github.com/babelouest/yder.git
+[submodule "lib/jansson"]
+	path = lib/jansson
+	url = https://github.com/akheron/jansson.git
+[submodule "lib/gnutls"]
+	path = lib/gnutls
+	url = https://gitlab.com/gnutls/gnutls.git

@@ -1,4 +1,6 @@
 #include <ulfius.h>
+#include <stdbool.h>
+#include <error_util.h>
 
 struct sign_transaction_validation_result {
     bool successful;
@@ -26,12 +28,12 @@ struct sign_transaction_validation_result sign_transaction_validate_json(json_t 
 
     json_t *address_index_json_ptr = json_object_get(json_ptr, "addressIndex");
     if (json_is_null(address_index_json_ptr) || address_index_json_ptr == NULL) {
-        result.validation_error = ADDRESS_INDEX_MISSING_MESSAGE;
+        result.validation_error = ERROR_ADDRESS_INDEX_MISSING;
         return result;
     }
 
     if (address_index_json_ptr->type != JSON_INTEGER) {
-        result.validation_error = ADDRESS_INDEX_NOT_NUMBER;
+        result.validation_error = ERROR_ADDRESS_INDEX_NOT_NUMBER;
         return result;
     }
 
@@ -48,7 +50,7 @@ struct sign_transaction_validation_result sign_transaction_validate_json(json_t 
 
     json_t *security_level_json_ptr = json_object_get(json_ptr, "securityLevel");
     if (json_is_null(security_level_json_ptr) || security_level_json_ptr == NULL) {
-        result.validation_error = SECURITY_LEVEL_MISSING_MESSAGE;
+        result.validation_error = ERROR_SECURITY_LEVEL_MISSING;
         return result;
     }
 
@@ -59,12 +61,12 @@ struct sign_transaction_validation_result sign_transaction_validate_json(json_t 
 
     json_t *auth_json_ptr = json_object_get(json_ptr, "auth");
     if (json_is_null(auth_json_ptr) || auth_json_ptr == NULL) {
-        result.validation_error = AUTH_MISSING_MESSAGE;
+        result.validation_error = ERROR_AUTH_MISSING;
         return result;
     }
 
     if (address_index_json_ptr->type != JSON_STRING) {
-        result.validation_error = AUTH_NOT_STRING;
+        result.validation_error = ERROR_AUTH_NOT_STRING;
         return result;
     }
 

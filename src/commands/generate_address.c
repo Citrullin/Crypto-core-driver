@@ -73,7 +73,6 @@ struct generate_address_validation_result generate_address_validation_result(jso
 }
 
 void generate_address_handle_request(json_t *json_ptr, struct _u_response *response) {
-    json_t *response_obj_json = json_object();
 
     struct generate_address_validation_result result = generate_address_validation_result(json_ptr);
 

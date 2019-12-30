@@ -4,12 +4,17 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#include <uart.h>
 #endif
 
 #include <ulfius.h>
+#include <uart.h>
 
 #include "config.h"
 #include "callbacks.h"
+
+//Todo: Use fd as parameter for callback function. In order to have multiple fds.
+int uart_fd;
 
 char * read_file(const char * filename) {
     char * buffer = NULL;
@@ -64,6 +69,8 @@ void start_server(struct _u_instance * instance_ptr, int argc, char **argv){
 }
 
 int main (int argc, char **argv) {
+    uart_fd = uart_init();
+
     struct _u_instance instance;
 
     y_init_logs("crypto_core_driver", Y_LOG_MODE_CONSOLE, Y_LOG_LEVEL_DEBUG, NULL, "Starting crypto_core_driver");
