@@ -47,8 +47,8 @@ struct attach_to_tangle_validation_result attach_to_tangle_validate_json(json_t 
         return result;
     }
 
-    const char * branch_transaction_ptr = json_string_value(trunk_transaction_json_ptr);
-    if(strlen(trunk_transaction_json_ptr) != 81){
+    const char * trunk_transaction_ptr = json_string_value(trunk_transaction_json_ptr);
+    if(strlen(trunk_transaction_ptr) != 81){
         result.validation_error = ERROR_TRUNK_TRANSACTION_WRONG_SIZE;
     }
 
