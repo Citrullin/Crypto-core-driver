@@ -1,6 +1,7 @@
 #include <stdbool.h>
 
 #include <ulfius.h>
+#include <uart.h>
 #include "error_util.h"
 #include "commands/do_pow.h"
 #include "json_response_utils.h"
@@ -78,7 +79,9 @@ void do_pow_handle_request(json_t *json_ptr, struct _u_response *response) {
     do_pow_validation_result_t result = do_pow_tangle_validate_json(json_ptr);
 
     if (result.successful) {
-        ulfius_set_string_body_response(response, 200, "do_pow");
+        uart_write(json_ptr);
+        char * result = uart_read();
+        ulfius_set_string_body_response(response, 200, result);
     } else {
         set_do_pow_error_message(response_obj_json, &result);
     }

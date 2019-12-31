@@ -1,6 +1,7 @@
 #include <ulfius.h>
 #include <stdbool.h>
 #include <error_util.h>
+#include <uart.h>
 
 struct generate_random_seed_validation_result {
     bool successful;
@@ -28,8 +29,9 @@ void generate_random_seed_handle_request(json_t *json_ptr, struct _u_response *r
     struct generate_random_seed_validation_result validation_result = generate_random_seed_validate_json(json_ptr);
 
     if (validation_result.successful) {
-        //Todo: Implement UART and response
-        ulfius_set_string_body_response(response, 200, "generateRandomSeed");
+        uart_write(json_ptr);
+        char * result = uart_read();
+        ulfius_set_string_body_response(response, 200, result);
     } else {
         send_error_message(response, validation_result.validation_error);
     }

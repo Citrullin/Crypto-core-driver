@@ -14,8 +14,10 @@ typedef enum {
     ERROR_KEEP_SEED_IN_RAM_NOT_BOOL,
     ERROR_TRUNK_TRANSACTION_MISSING,
     ERROR_TRUNK_TRANSACTION_NOT_STRING,
+    ERROR_TRUNK_TRANSACTION_WRONG_SIZE,
     ERROR_BRANCH_TRANSACTION_MISSING,
     ERROR_BRANCH_TRANSACTION_NOT_STRING,
+    ERROR_BRANCH_TRANSACTION_WRONG_SIZE,
     ERROR_MIN_WEIGHT_MAGNITUDE_NOT_NUMBER,
     ERROR_TIMESTAMP_MISSING,
     ERROR_TIMESTAMP_NOT_NUMBER,
@@ -32,10 +34,14 @@ typedef enum {
     ERROR_SECURITY_LEVEL_NOT_NUMBER,
     ERROR_ADDRESS_INDEX_MISSING,
     ERROR_ADDRESS_INDEX_NOT_NUMBER,
+    ERROR_ADDRESS_MISSING,
+    ERROR_ADDRESS_NOT_STRING,
+    ERROR_ADDRESS_WRONG_SIZE,
     ERROR_BUNDLE_HASH_MISSING,
     ERROR_BUNDLE_HASH_NOT_STRING,
     ERROR_AUTH_MISSING,
-    ERROR_AUTH_NOT_STRING
+    ERROR_AUTH_NOT_STRING,
+    ERROR_TAG_WRONG_SIZE
 } crypto_core_json_validation_error_t;
 
 void send_error_message(struct _u_response *response, crypto_core_json_validation_error_t validation_error);
@@ -77,5 +83,11 @@ void send_error_message(struct _u_response *response, crypto_core_json_validatio
 #define BUNDLE_HASH_NOT_STRING_MESSAGE "Bundle hash is not a string"
 #define AUTH_MISSING_MESSAGE "Auth missing"
 #define AUTH_NOT_STRING_MESSAGE "Auth is not a string"
+#define TRUNK_TRANSACTION_WRONG_SIZE_MESSAGE "Trunk transaction size must be 81 trytes"
+#define BRANCH_TRANSACTION_WRONG_SIZE_MESSAGE "Branch transaction size must be 81 trytes"
+#define TAG_WRONG_SIZE_MESSAGE "Tag size must be 27 trytes"
+#define ADDRESS_MISSING_MESSAGE "Address is missing"
+#define ADDRESS_NOT_STRING_MESSAGE "Address not string"
+#define ADDRESS_WRONG_SIZE_MESSAGE "Address must be 81 trytes"
 
 #endif //CRYPTO_CORE_ERROR_UTIL_H

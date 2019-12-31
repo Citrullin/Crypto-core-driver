@@ -1,6 +1,7 @@
 #include <ulfius.h>
 #include <stdbool.h>
 #include <error_util.h>
+#include <uart.h>
 
 struct sign_transaction_validation_result {
     bool successful;
@@ -84,8 +85,9 @@ void sign_transaction_handle_request(json_t *json_ptr, struct _u_response *respo
     struct sign_transaction_validation_result validation_result = sign_transaction_validate_json(json_ptr);
 
     if (validation_result.successful) {
-        //Todo: Implement UART and response
-        ulfius_set_string_body_response(response, 200, "signTransaction");
+        uart_write(json_ptr);
+        char * result = uart_read();
+        ulfius_set_string_body_response(response, 200, result);
     } else {
         send_error_message(response, validation_result.validation_error);
     }

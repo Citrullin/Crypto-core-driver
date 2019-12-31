@@ -21,6 +21,7 @@
 #include "commands/set_flags.h"
 #include "commands/sign_transaction.h"
 #include "commands/test_hardware_acceleration.h"
+#include "commands/json_data_tx.h"
 
 
 #define IOTA_API_VERSION_HEADER_KEY "X-IOTA-API-Version"
@@ -36,6 +37,7 @@
 #define CMD_GENERATE_ADDRESS "generateAddress"
 #define CMD_DO_POW "doPow"
 #define CMD_SIGN_TRANSACTION "signTransaction"
+#define CMD_JSON_DATA_TX "jsonDataTX"
 
 #define CONTENT_TYPE_NOT_PROVIDED_MESSAGE "Content-Type not provided."
 #define CONTENT_TYPE_NOT_JSON_MESSAGE "Content-Type is not application/json."
@@ -165,6 +167,8 @@ void handle_api_request(json_t *json_ptr, struct _u_response *response) {
             test_hardware_acceleration_handle_request(json_ptr, response);
         } else if (strcmp(CMD_SET_FLAGS, command) == 0) {
             set_flags_handle_request(json_ptr, response);
+        }else if (strcmp(CMD_JSON_DATA_TX, command) == 0){
+            json_data_tx_handle_request(json_ptr, response);
         } else {
             json_t *response_obj_json = json_object();
             char message[] = COMMAND_DOES_NOT_EXIST_MESSAGE;

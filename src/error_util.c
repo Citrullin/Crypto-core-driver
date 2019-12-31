@@ -103,6 +103,24 @@ void send_error_message(struct _u_response *response, crypto_core_json_validatio
         case ERROR_AUTH_NOT_STRING:
             strcpy(error_message_buffer, AUTH_NOT_STRING_MESSAGE);
             break;
+        case ERROR_BRANCH_TRANSACTION_WRONG_SIZE:
+            strcpy(error_message_buffer, BRANCH_TRANSACTION_WRONG_SIZE_MESSAGE);
+            break;
+        case ERROR_TRUNK_TRANSACTION_WRONG_SIZE:
+            strcpy(error_message_buffer, TRUNK_TRANSACTION_WRONG_SIZE_MESSAGE);
+            break;
+        case ERROR_TAG_WRONG_SIZE:
+            strcpy(error_message_buffer, TAG_WRONG_SIZE_MESSAGE);
+            break;
+        case ERROR_ADDRESS_MISSING:
+            strcpy(error_message_buffer, ADDRESS_MISSING_MESSAGE);
+            break;
+        case ERROR_ADDRESS_NOT_STRING:
+            strcpy(error_message_buffer, ADDRESS_NOT_STRING_MESSAGE);
+            break;
+        case ERROR_ADDRESS_WRONG_SIZE:
+            strcpy(error_message_buffer, ADDRESS_WRONG_SIZE_MESSAGE);
+            break;
     }
 
     ulfius_set_json_body_response(response, 400, response_obj_json);

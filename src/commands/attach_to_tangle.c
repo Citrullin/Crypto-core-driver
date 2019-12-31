@@ -6,7 +6,6 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
-#include <termios.h>
 
 #endif
 
@@ -48,6 +47,11 @@ struct attach_to_tangle_validation_result attach_to_tangle_validate_json(json_t 
         return result;
     }
 
+    const char * branch_transaction_ptr = json_string_value(trunk_transaction_json_ptr);
+    if(strlen(trunk_transaction_json_ptr) != 81){
+        result.validation_error = ERROR_TRUNK_TRANSACTION_WRONG_SIZE;
+    }
+
     json_t *branch_transaction_json_ptr = json_object_get(json_ptr, "branchTransaction");
     if (json_is_null(branch_transaction_json_ptr) || branch_transaction_json_ptr == NULL) {
         result.validation_error = ERROR_BRANCH_TRANSACTION_MISSING;
@@ -59,6 +63,11 @@ struct attach_to_tangle_validation_result attach_to_tangle_validate_json(json_t 
         result.validation_error = ERROR_BRANCH_TRANSACTION_NOT_STRING;
 
         return result;
+    }
+
+    const char * branch_transaction_ptr = json_string_value(branch_transaction_json_ptr);
+    if(strlen(branch_transaction_ptr) != 81){
+        result.validation_error = ERROR_BRANCH_TRANSACTION_WRONG_SIZE;
     }
 
     json_t *min_weight_magnitude_json_ptr = json_object_get(json_ptr, "minWeightMagnitude");
@@ -111,11 +120,10 @@ struct attach_to_tangle_validation_result attach_to_tangle_validate_json(json_t 
 }
 
 void attach_to_tangle_handle_request(json_t *json_ptr, struct _u_response *response) {
-
     struct attach_to_tangle_validation_result validation_result = attach_to_tangle_validate_json(json_ptr);
 
     if (validation_result.successful) {
-        //Todo: Implement UART and response
+        //Todo: Check uart write and read
         uart_write(json_ptr);
         char * result = uart_read();
         ulfius_set_string_body_response(response, 200, result);

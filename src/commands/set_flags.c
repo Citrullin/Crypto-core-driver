@@ -10,6 +10,7 @@
 #endif
 
 #include <ulfius.h>
+#include <uart.h>
 
 #include "error_util.h"
 
@@ -58,6 +59,7 @@ void set_flags_handle_request(json_t *json_ptr, struct _u_response *response) {
     struct set_flags_validation_result validation_result = set_flags_validate_json(json_ptr);
 
     if (validation_result.successful) {
+        uart_write(json_ptr);
         char message[] = SET_FLAGS_SUCCESSFUL_MESSAGE;
         json_t *response_message_json = json_string(message);
         json_object_set_new(response_obj_json, "message", response_message_json);

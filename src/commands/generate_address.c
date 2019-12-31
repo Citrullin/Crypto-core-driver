@@ -1,8 +1,7 @@
 #include <stdbool.h>
 #include <ulfius.h>
 #include "error_util.h"
-
-
+#include <uart.h>
 
 struct generate_address_validation_result {
     bool successful;
@@ -77,7 +76,9 @@ void generate_address_handle_request(json_t *json_ptr, struct _u_response *respo
     struct generate_address_validation_result result = generate_address_validation_result(json_ptr);
 
     if (result.successful) {
-        ulfius_set_string_body_response(response, 200, "trytes");
+        uart_write(json_ptr);
+        char * result = uart_read();
+        ulfius_set_string_body_response(response, 200, result);
     } else {
         send_error_message(response, result.validation_error);
     }
