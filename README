@@ -1,5 +1,17 @@
-##Dependencies
+
+## How to build this project
+
+1. Install these dependencies with the package management provided by your distro
 
 - libsystemd-dev
 - libmicrohttpd-dev
 - libcurl4-gnutls-dev
+- gperf
+- gnutls-bin
+
+autotools-dev autoconf autogen
+
+2. Initialization of all submodules
+
+```git submodule update --init --recursive```
+
