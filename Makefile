@@ -25,7 +25,7 @@ liborcania.a:
 
 #Fixme: Pass include directory for liborcania static library and header files
 libulfius.so:
-	cd $(ULFIUS_LOCATION) && $(MAKE) debug CURLFLAG=1 GNUTLSFLAG=1
+	cd $(ULFIUS_LOCATION) && $(MAKE) debug CURLFLAG=1 GNUTLSFLAG=1 && make install
 
 #Fixme: Create build system and use /libname/xxx.h name pattern
 crypto_core_driver.o: src/crypto_core_driver.c
