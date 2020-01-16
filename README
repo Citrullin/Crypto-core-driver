@@ -1,5 +1,0 @@
-##Dependencies
-
-- libsystemd-dev
-- libmicrohttpd-dev
-- libcurl4-gnutls-dev
