@@ -31,10 +31,10 @@ libulfius.so:
 #Fixme: Create build system and use /libname/xxx.h name pattern
 crypto_core_driver.o: src/crypto_core_driver.c
 	mkdir -p $(BUILD_DIR)
-	cd $(BUILD_DIR) && $(CC) -I../include -I../lib -I../lib/ulfius/include $(CFLAGS) $(foreach file,$(CFILES),../src/$(file)) -DDEBUG -g -O0
+	cd $(BUILD_DIR) && $(CC) -Iinclude $(INCLUDE) $(CFLAGS) $(foreach file,$(CFILES),../src/$(file)) -DDEBUG -g -O0
 
 crypto_core_driver: liborcania.a libulfius.so crypto_core_driver.o
-	cd $(BUILD_DIR) && $(CC) $(INCLUDE) -o crypto_core_driver $(OFILES) $(LIBS) -I libs
+	cd $(BUILD_DIR) && $(CC) -o crypto_core_driver $(OFILES) $(LIBS) -I libs
 
 test: crypto_core_driver
 	LD_LIBRARY_PATH=$(ULFIUS_LOCATION):${LD_LIBRARY_PATH} ./$(BUILD_DIR)/crypto_core_driver
