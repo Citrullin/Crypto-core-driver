@@ -42,7 +42,7 @@ crypto_core_driver.o: src/crypto_core_driver.c
 	mkdir -p $(BUILD_DIR)
 	cd $(BUILD_DIR) && $(CC) -Iinclude $(INCLUDE) $(CFLAGS) $(foreach file,$(CFILES),../src/$(file)) -DDEBUG -g -O0
 
-crypto_core_driver: jansson.a liborcania.a libulfius.so crypto_core_driver.o
+crypto_core_driver: yder.a jansson.a liborcania.a libulfius.so crypto_core_driver.o
 	cd $(BUILD_DIR) && $(CC) -o crypto_core_driver $(OFILES) $(LIBS) -I libs
 
 test: crypto_core_driver
