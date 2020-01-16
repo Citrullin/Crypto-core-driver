@@ -32,7 +32,7 @@ crypto_core_driver.o: src/crypto_core_driver.c
 	mkdir -p $(BUILD_DIR)
 	cd $(BUILD_DIR) && $(CC) -I../include -I../lib -I../lib/ulfius/include $(CFLAGS) $(foreach file,$(CFILES),../src/$(file)) -DDEBUG -g -O0
 
-crypto_core_driver: libulfius.so liborcania.a crypto_core_driver.o
+crypto_core_driver: liborcania.a libulfius.so crypto_core_driver.o
 	cd $(BUILD_DIR) && $(CC) -o crypto_core_driver $(OFILES) $(LIBS)
 
 test: crypto_core_driver
