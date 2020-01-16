@@ -2,6 +2,7 @@ LIB_DIR=lib
 ULFIUS_LOCATION=$(LIB_DIR)/ulfius
 ORCANIA_LOCATION=$(LIB_DIR)/orcania
 JANSSON_DIR=$(LIB_DIR)/jansson
+YDER_DIR=$(LIB_DIR)/yder
 CC=gcc
 BUILD_DIR=build
 CFLAGS+=-c -Wall -D_REENTRANT $(ADDITIONALFLAGS) $(CPPFLAGS)
@@ -24,14 +25,17 @@ debug: ADDITIONALFLAGS=-DDEBUG -g -O0
 debug: crypto_core_driver
 
 jansson.a:
-	cd $(JANSSON_DIR) && autoreconf -i && ./configure && $(MAKE)
+	cd $(JANSSON_DIR) && autoreconf -i && ./configure && $(MAKE) && $(MAKE) install
 
 liborcania.a:
-	make static
+	cd $(ORCANIA_DIR) && $(MAKE) install
+
+yder.a:
+	cd $(YDER_DIR)/src && $(MAKE) install
 
 #Fixme: Pass include directory for liborcania static library and header files
 libulfius.so:
-	cd $(ULFIUS_LOCATION) && $(MAKE) debug CURLFLAG=1 GNUTLSFLAG=1 && make install
+	cd $(ULFIUS_DIR) && $(MAKE) debug CURLFLAG=1 GNUTLSFLAG=1 && make install
 
 #Fixme: Create build system and use /libname/xxx.h name pattern
 crypto_core_driver.o: src/crypto_core_driver.c
@@ -42,7 +46,7 @@ crypto_core_driver: jansson.a liborcania.a libulfius.so crypto_core_driver.o
 	cd $(BUILD_DIR) && $(CC) -o crypto_core_driver $(OFILES) $(LIBS) -I libs
 
 test: crypto_core_driver
-	LD_LIBRARY_PATH=$(ULFIUS_LOCATION):${LD_LIBRARY_PATH} ./$(BUILD_DIR)/crypto_core_driver
+	LD_LIBRARY_PATH=$(ULFIUS_DIR):${LD_LIBRARY_PATH} ./$(BUILD_DIR)/crypto_core_driver
 
 #Fixme: Add static librarys. Copy them into build and link them. Basiclly: simple build system
 #Fixme: Fix -lgnutls
