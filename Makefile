@@ -1,6 +1,6 @@
 LIB_DIR=lib
-ULFIUS_LOCATION=$(LIB_DIR)/ulfius
-ORCANIA_LOCATION=$(LIB_DIR)/orcania
+ULFIUS_DIR=$(LIB_DIR)/ulfius
+ORCANIA_DIR=$(LIB_DIR)/orcania
 JANSSON_DIR=$(LIB_DIR)/jansson
 YDER_DIR=$(LIB_DIR)/yder
 CC=gcc
@@ -25,7 +25,7 @@ debug: ADDITIONALFLAGS=-DDEBUG -g -O0
 debug: crypto_core_driver
 
 jansson.a:
-	cd $(JANSSON_DIR) && autoreconf -i && ./configure && $(MAKE) && $(MAKE) install
+	cd $(JANSSON_DIR) && autoreconf -i && ./configure && $(MAKE)
 
 liborcania.a:
 	cd $(ORCANIA_DIR) && $(MAKE) install
