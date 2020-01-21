@@ -97,7 +97,11 @@ char * uart_read(void){
 void uart_write(json_t * json_ptr){
     memset(uart_buffer, 0, UART_BUFFER_SIZE);
     size_t used_size = json_dumpb(json_ptr, uart_buffer, UART_BUFFER_SIZE, JSON_ENSURE_ASCII);
-
+    for(unsigned int i = 0; i < used_size; i++){
+        if(uart_buffer[i] == '\n'){
+            uart_buffer[i] = ' ';
+        }
+    }
     printf("Send %li bytes to uart. Message: %s\n", used_size, uart_buffer);
     write(uart_fd, uart_buffer, used_size);
     write(uart_fd, "\n", 1);
